@@ -20,7 +20,7 @@ public class UserController {
 
 //получение все юзеров
     @GetMapping()
-    public String allUsers(Model model) {
+    public String showAllUsers(Model model) {
         if (userService.getUserList().isEmpty()) {
             userService.saveUser(new User("Alex", "Lavrov", "+79104066964"));
             userService.saveUser(new User("Bob", "Taylor", "+74958679506"));
@@ -57,13 +57,13 @@ public class UserController {
     }
 
     @PatchMapping(value = "/{id}")
-    public String update(@ModelAttribute("user") User user) {
+    public String updateUser(@ModelAttribute("user") User user) {
         userService.updateUser(user);
         return "redirect:/users";
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public String deleteUser(@PathVariable("id") int id) {
         userService.deleteUser(id);
         return "redirect:/users";
     }
